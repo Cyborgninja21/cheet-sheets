@@ -1,3 +1,9 @@
+# info soruces
+
+# https://k3s.rocks/install-setup/
+# 
+# 
+
 # Preconfig 
 
 Install the latest updates, open-iscsi for longhorn and wireguard:
@@ -20,20 +26,22 @@ sudo mv ~/.arkade/bin/kubectl /usr/local/bin/ && \
 source <(kubectl completion bash) && \
 echo 'source <(kubectl completion bash)' >> ~/.bashrc
 
-
-
-
-
 # Install K3S in High Availability Mode with an embedded Database
 
-
 ## Install first Server
+
 ```bash
 curl -sfL https://get.k3s.io | sh -s - server \
 --token=YOUR-SECRET \
---tls-san {your-dns-name} --tls-san {your-lb-ip-address}
---cluster-init
+--tls-san {your-dns-name} --tls-san {your-lb-ip-address} \
+--cluster-init \
+--flannel-backend=wireguard \
+--write-kubeconfig-mode 644 && \
 ```
+
+
+
+
 
 
 
