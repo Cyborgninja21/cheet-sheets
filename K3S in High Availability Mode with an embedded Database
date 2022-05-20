@@ -1,3 +1,29 @@
+# Preconfig 
+
+Install the latest updates, open-iscsi for longhorn and wireguard:
+
+sudo apt update && \
+sudo apt upgrade -y && \
+sudo apt install open-iscsi -y && \
+sudo apt install wireguard -y
+
+
+# Install Arkade, Helm and Kubectl autocomplete:
+
+curl -sLS https://dl.get-arkade.dev | sh && \
+sudo cp arkade /usr/local/bin/arkade && \
+sudo cp arkade /usr/local/bin/arkade && \
+arkade get helm && \
+sudo cp ~/.arkade/bin/helm /usr/local/bin/ && \
+arkade get kubectl && \
+sudo mv ~/.arkade/bin/kubectl /usr/local/bin/ && \
+source <(kubectl completion bash) && \
+echo 'source <(kubectl completion bash)' >> ~/.bashrc
+
+
+
+
+
 # Install K3S in High Availability Mode with an embedded Database
 
 
@@ -5,7 +31,7 @@
 ```bash
 curl -sfL https://get.k3s.io | sh -s - server \
 --token=YOUR-SECRET \
---tls-san your-dns-name --tls-san your-lb-ip-address
+--tls-san {your-dns-name} --tls-san {your-lb-ip-address}
 --cluster-init
 ```
 
